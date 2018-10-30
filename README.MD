@@ -3,6 +3,6 @@
 ### Group Members
 
 ### Additional Information
-Firebase/Google account:
-Username: mobiledeviceproject1@gmail.com
+Firebase/Google account: <br>
+Username: mobiledeviceproject1@gmail.com <br>
 password: gitgood123
