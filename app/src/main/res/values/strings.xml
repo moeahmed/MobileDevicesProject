@@ -10,5 +10,7 @@
     <string name="chats">Chats</string>
     <string name="contacts">Contacts</string>
 
+    <string name="enterTextHolder">Type a message</string>
+
 
 </resources>
