@@ -7,6 +7,6 @@ Firebase/Google account: <br>
 Username: mobiledeviceproject1@gmail.com <br>
 Password: gitgood123
 
-Test User:
-Username: username@gmail.com
+Test User: <br>
+Username: username@gmail.com <br>
 Password: password
