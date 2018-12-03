@@ -1,5 +1,6 @@
 package net.uoit.csci4100.mobiledeviceproject;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -8,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.Toast;
@@ -75,5 +78,32 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.settings){
+            Intent intent = new Intent(MainActivity.this, settings.class);
+            startActivityForResult(intent,1);
+        }
+
+        if(id == R.id.profile){
+            Intent intent = new Intent(MainActivity.this, Profile.class);
+            startActivityForResult(intent,1);
+        }
+
+        if(id == R.id.signOut){
+            Intent intent = new Intent(MainActivity.this, signOut.class);
+            startActivityForResult(intent,1);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
