@@ -14,6 +14,8 @@
     <string name="resetAccount">Reset Account?</string>
     <string name="createAccount">Create a new account</string>
     <string name="logo">Logo</string>
+    <string name="alreadyRegistered">Already Registered?</string>
+    <string name="register">Register</string>
 
 
 </resources>
