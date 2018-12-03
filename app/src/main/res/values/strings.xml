@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">MobileDeviceProject</string>
     <string name="login">Login</string>
-    <string name="username">Username: </string>
-    <string name="password">Password: </string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 
     <string name="chatsFragment">Chats Fragment</string>
     <string name="contactsFragment">Contacts Fragment</string>
@@ -11,6 +11,9 @@
     <string name="contacts">Contacts</string>
 
     <string name="enterTextHolder">Type a message</string>
+    <string name="resetAccount">Reset Account?</string>
+    <string name="createAccount">Create a new account</string>
+    <string name="logo">Logo</string>
 
 
 </resources>
