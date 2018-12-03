@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileDeviceProject</string>
+    <string name="app_name">Link Chat</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -16,6 +16,7 @@
     <string name="logo">Logo</string>
     <string name="alreadyRegistered">Already Registered?</string>
     <string name="register">Register</string>
+    <string name="resetPassword">Reset Password</string>
 
 
 </resources>

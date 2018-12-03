@@ -61,5 +61,14 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
+    public void handleCreateAccount(View view) {
+        Intent launchRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(launchRegister);
+    }
+
+    public void handleResetAccount(View view) {
+        Intent launchReset = new Intent(LoginActivity.this, ResetActivity.class);
+        startActivity(launchReset);
+    }
 
 }

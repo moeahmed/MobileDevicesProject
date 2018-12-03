@@ -22,7 +22,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ResetActivity"></activity>
     </application>
 
 </manifest>
