@@ -17,6 +17,9 @@
     <string name="alreadyRegistered">Already Registered?</string>
     <string name="register">Register</string>
     <string name="resetPassword">Reset Password</string>
+    <string name="name">Name</string>
+    <string name="update">Update Profile</string>
+    <string name="profilephoto">Profile Picture</string>
 
 
 </resources>
