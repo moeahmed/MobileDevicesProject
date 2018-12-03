@@ -42,20 +42,23 @@ public class LoginActivity extends AppCompatActivity  {
         EditText txtUser = findViewById(R.id.txtUsername);
         EditText txtPass = findViewById(R.id.txtPassword);
 
-        mAuth.signInWithEmailAndPassword(txtUser.getText().toString(),
-                                        txtPass.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(!task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
-                }else{
-                    Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
-                    startActivityForResult(launchChat,CHAT);
-                }
-            }
-        });
-
+        if (txtUser.getText().toString().isEmpty() || txtPass.getText().toString().isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+        } else {
+            mAuth.signInWithEmailAndPassword(txtUser.getText().toString(),
+                    txtPass.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(!task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+                            } else {
+                                Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
+                                startActivityForResult(launchChat,CHAT);
+                            }
+                        }
+                    });
+        }
     }
 
 
