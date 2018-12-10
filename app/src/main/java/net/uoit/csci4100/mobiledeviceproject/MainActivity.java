@@ -74,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-
-
-
-
     }
 
     @Override
