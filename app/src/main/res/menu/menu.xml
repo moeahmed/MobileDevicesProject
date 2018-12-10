@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".BrowseProductsActivity" >
+    tools:context=".MainActivity" >
 
     <item
         android:id="@+id/profile"
+<<<<<<< HEAD
         android:title="Profile"
         app:showAsAction="never"/>
     <item
@@ -17,4 +18,14 @@
         android:id="@+id/signOut"
         android:title="Sign Out"
         app:showAsAction="never"/>
+=======
+        android:title="@string/profile" />
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/signOut"
+        android:title="@string/signout" />
+>>>>>>> 953999db293a49877c2b142b8d892b4e92d3dbe5
 </menu>

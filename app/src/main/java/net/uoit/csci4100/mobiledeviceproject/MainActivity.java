@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout mTabLayout;
-    private AppBarLayout mAppBarLayout;
+    private Toolbar mToolbarLayout;
     private ViewPager mViewPager;
     private DatabaseReference mRef;
     private FirebaseUser mUser;
@@ -62,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize AppBar and components
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.appBar);
+        mToolbarLayout = (Toolbar) findViewById(R.id.main_toolbar);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        // Setup Toolbar
+        setSupportActionBar(mToolbarLayout);
 
         // Add Fragments to ViewPagerAdapter
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -74,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 953999db293a49877c2b142b8d892b4e92d3dbe5
     }
 
     @Override
@@ -87,18 +95,20 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.settings){
-            Intent intent = new Intent(MainActivity.this, settings.class);
-            startActivityForResult(intent,1);
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivityForResult(intent,0);
         }
 
         if(id == R.id.profile){
-            Intent intent = new Intent(MainActivity.this, Profile.class);
-            startActivityForResult(intent,1);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivityForResult(intent,0);
         }
 
         if(id == R.id.signOut){
-            Intent intent = new Intent(MainActivity.this, signOut.class);
-            startActivityForResult(intent,1);
+            // Sign out user and send them back to LoginActivity
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivityForResult(intent,0);
         }
         return super.onOptionsItemSelected(item);
     }
