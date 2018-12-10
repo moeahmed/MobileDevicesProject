@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private DatabaseReference mRef;
     private FirebaseUser mUser;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +41,35 @@ public class MainActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseFirestore.getInstance();
 
-        mRef.child("Accounts").child(mUser.getUid()).child("Name").setValue("Somthing");
 
-        mRef.child("Accounts").child(mUser.getUid()).child("Name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText(MainActivity.this, dataSnapshot.getValue(String.class), Toast.LENGTH_LONG).show();
-            }
+        //db.collection("Contact List").add().addOnSuccessListener();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
 
-            }
-        }, 1000);
+//        mRef.child("Accounts").child(mUser.getUid()).child("Name").setValue("Somthing");
+
+
+//        mRef.child("Accounts").child(mUser.getUid()).child("Name").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Toast.makeText(MainActivity.this, dataSnapshot.getValue(String.class), Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 1000);
 
         // Initialize AppBar and components
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -78,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 953999db293a49877c2b142b8d892b4e92d3dbe5
     }
 
     @Override

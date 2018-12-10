@@ -30,9 +30,12 @@ public class LoginActivity extends AppCompatActivity  {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 if (firebaseAuth.getCurrentUser() != null){
                     Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
                     startActivityForResult(launchChat,CHAT);
+                }else{
+                    Toast.makeText(LoginActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         };
