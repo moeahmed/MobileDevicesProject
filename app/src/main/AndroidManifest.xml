@@ -24,9 +24,7 @@
 
         <activity android:name=".ChatActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ResetActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ResetActivity"></activity>
     </application>
 
 </manifest>

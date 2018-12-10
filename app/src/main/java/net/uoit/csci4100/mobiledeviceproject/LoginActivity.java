@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity  {
                             } else {
                                 Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
                                 startActivityForResult(launchChat,CHAT);
-                                finish();
                             }
                         }
                     });
