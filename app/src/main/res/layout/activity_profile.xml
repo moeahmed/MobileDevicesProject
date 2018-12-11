@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/profilephoto"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars[5]" />
 
         <TextView
             android:id="@+id/lblName"
@@ -73,7 +73,8 @@
             android:id="@+id/btnProfileUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onClickUpdate"
             android:text="@string/update" />
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

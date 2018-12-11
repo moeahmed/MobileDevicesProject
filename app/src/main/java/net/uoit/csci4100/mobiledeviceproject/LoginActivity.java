@@ -14,10 +14,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity  {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mRef;
     public static final int CHAT = 0;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -27,6 +30,8 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+        mRef = FirebaseDatabase.getInstance().getReference();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -56,6 +61,9 @@ public class LoginActivity extends AppCompatActivity  {
                             if(!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
                             } else {
+                                String currentID = mAuth.getCurrentUser().getUid();
+                                mRef.child("Users").child(currentID);
+
                                 Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
                                 startActivityForResult(launchChat,CHAT);
                                 finish();

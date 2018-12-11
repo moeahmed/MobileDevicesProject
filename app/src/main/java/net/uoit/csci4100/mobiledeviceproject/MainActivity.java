@@ -37,8 +37,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private TabLayout mTabLayout;
     private Toolbar mToolbarLayout;
     private RecyclerView mUserList;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private DatabaseReference mRef;
     private FirebaseUser mUser;
-    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     ArrayList<Users> userList;
 
@@ -60,45 +58,87 @@ public class MainActivity extends AppCompatActivity {
 
         userList = new ArrayList<>();
 
+        mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
-        db = FirebaseFirestore.getInstance();
 
 
         // Initialize AppBar and components
-//        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-//        mToolbarLayout = (Toolbar) findViewById(R.id.main_toolbar);
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mToolbarLayout = (Toolbar) findViewById(R.id.main_toolbar);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        // Setup Toolbar
+        setSupportActionBar(mToolbarLayout);
+
+        // Add Fragments to ViewPagerAdapter
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.AddFragment(new ChatsFragment(), getString(R.string.chats));
+        viewPagerAdapter.AddFragment(new ContactsFragment(), getString(R.string.contacts));
+
+        // Setup Adapter
+        mViewPager.setAdapter(viewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
+
 
         //Initialize Recycler View
-        mUserList = (RecyclerView)findViewById(R.id.userList);
-        mUserList.setNestedScrollingEnabled(false);
-        mUserList.setHasFixedSize(false);
-        mUserListLayout = new LinearLayoutManager(this,LinearLayout.VERTICAL,false);
-        mUserList.setLayoutManager(mUserListLayout);
-        mUserListAdapter = new UserListAdapter(userList);
-        mUserList.setAdapter(mUserListAdapter);
-
-//        mUserList = (RecyclerView) findViewById(R.id.userList);
-//        layoutManager = new LinearLayoutManager(this);
-//        mUserList.setLayoutManager(layoutManager);
-        // Setup Toolbar
-//        setSupportActionBar(mToolbarLayout);
+//        mUserList = (RecyclerView)findViewById(R.id.userList);
+//        mUserList.setNestedScrollingEnabled(false);
+//        mUserList.setHasFixedSize(false);
+//        mUserListLayout = new LinearLayoutManager(this,LinearLayout.VERTICAL,false);
+//        mUserList.setLayoutManager(mUserListLayout);
+//        mUserListAdapter = new UserListAdapter(userList);
+//        mUserList.setAdapter(mUserListAdapter);
 //
-//        // Add Fragments to ViewPagerAdapter
-//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        viewPagerAdapter.AddFragment(new ChatsFragment(), getString(R.string.chats));
-//        viewPagerAdapter.AddFragment(new ContactsFragment(), getString(R.string.contacts));
+//        getContactList();
 
-//        // Setup Adapter
-//        mViewPager.setAdapter(viewPagerAdapter);
-//        mTabLayout.setupWithViewPager(mViewPager);
+    }
 
-        getContactList();
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(mUser == null){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivityForResult(intent,0);
+        }else{
+            verifyUsersExistence();
+        }
+    }
+
+    private void verifyUsersExistence() {
+        final String currentUserID = mAuth.getCurrentUser().getUid();
+
+        mRef.child("Users").child(currentUserID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Boolean exist = dataSnapshot.child("name:").exists();
+
+
+                Toast.makeText(MainActivity.this, exist.toString(), Toast.LENGTH_LONG).show();
+
+                if((dataSnapshot.child("name").exists())){
+                    Toast.makeText(MainActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+                }else{
+                   //Toast.makeText(MainActivity.this, "Please Enter Info", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivityForResult(intent,0);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
