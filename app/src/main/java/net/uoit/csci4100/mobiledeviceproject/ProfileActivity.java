@@ -26,6 +26,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.instrumentation.stats.Tag;
+import com.squareup.picasso.Picasso;
 
 import java.net.URI;
 import java.net.URL;
@@ -102,17 +103,22 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
         mRef.child("Users").child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists() && dataSnapshot.hasChild("name") && dataSnapshot.hasChild("email") && dataSnapshot.hasChild("Image")){
+                if(dataSnapshot.exists() && dataSnapshot.hasChild("name") && dataSnapshot.hasChild("email") && dataSnapshot.hasChild("image")){
                     String mUsername = dataSnapshot.child("name").getValue().toString();
                     String mEmail = dataSnapshot.child("email").getValue().toString();
                     String mImage = dataSnapshot.child("image").getValue().toString();
 
-                    DownloadImageTask imageTask = new DownloadImageTask();
-                    imageTask.setImageDataListener(ProfileActivity.this);
-                    imageTask.execute(new String[] {mImage});
+                    Picasso.get().load(mImage).into(profilePic);
+
+                    //Toast.makeText(ProfileActivity.this, mImage, Toast.LENGTH_SHORT).show();
+
+//                    DownloadImageTask imageTask = new DownloadImageTask();
+//                    imageTask.setImageDataListener(ProfileActivity.this);
+//                    imageTask.execute(new String[] {mImage});
 
                     name.setText(mUsername);
                     email.setText(mEmail);
+                    //Picasso.get().load(mImage).into(profilePic);
                 }else if(dataSnapshot.exists() && dataSnapshot.hasChild("name") && dataSnapshot.hasChild("email")){
                     String mUsername = dataSnapshot.child("name").getValue().toString();
                     String mEmail = dataSnapshot.child("email").getValue().toString();
@@ -147,15 +153,21 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
                         Toast.makeText(ProfileActivity.this, "Profile Picture Updated!", Toast.LENGTH_LONG).show();
 
 //                        String downloadURL = mStorage.child("Profile Pics").getDownloadUrl().toString();
-                        String url = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
-                        Log.d("URL", url);
-                        Toast.makeText(ProfileActivity.this, url, Toast.LENGTH_LONG).show();
-                        mRef.child("Users").child(currentUserID).child("image").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    //Toast.makeText(ProfileActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                                }
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                final String downloadUrl = task.getResult().toString();
+                                //Log.d("URL", downloadUrl);
+
+                                mRef.child("Users").child(currentUserID).child("image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            //Picasso.get().load(downloadUrl).into(profilePic);
+                                            Toast.makeText(ProfileActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
                         });
                     }else{
@@ -164,6 +176,7 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
                 }
             });
         }
+        retrieveInfo();
 
     }
 
