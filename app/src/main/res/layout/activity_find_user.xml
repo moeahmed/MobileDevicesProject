@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindUserActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/findUser_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+        app:elevation="0dp">
+
+        <TextView
+            android:id="@+id/appNameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/find_user"
+            android:textColor="@color/titleText"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/findUser_toolbar"
+        android:id="@+id/finduser_Recycler"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

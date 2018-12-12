@@ -112,6 +112,7 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
 
                     //Toast.makeText(ProfileActivity.this, mImage, Toast.LENGTH_SHORT).show();
 
+                    //TODO Fix this, since we really dont need a library for doing its job
 //                    DownloadImageTask imageTask = new DownloadImageTask();
 //                    imageTask.setImageDataListener(ProfileActivity.this);
 //                    imageTask.execute(new String[] {mImage});

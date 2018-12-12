@@ -19,10 +19,11 @@
 
         <ImageView
             android:id="@+id/imageView3"
+            android:onClick="onClickPicture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="128dp"
             android:contentDescription="@string/profilephoto"
-            tools:srcCompat="@tools:sample/avatars[5]" />
+            android:src="@drawable/avatar1" />
 
         <TextView
             android:id="@+id/lblName"

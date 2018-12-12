@@ -152,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent,0);
         }
 
+        if(id ==R.id.findFriend){
+            Intent intent = new Intent(MainActivity.this, FindUserActivity.class);
+            startActivity(intent);
+        }
+
         if(id == R.id.profile){
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivityForResult(intent,0);
@@ -166,19 +171,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getContactList(){
-        Cursor contactList = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
-
-        while(contactList.moveToNext()){
-            String name = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String email = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Email.DISPLAY_NAME));
-            //Image image = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO));
-            Image image = null;
-            Users mUsers = new Users(name,email, image);
-            userList.add(mUsers);
-            mUserListAdapter.notifyDataSetChanged();
-        }
-    }
+//    private void getContactList(){
+//        Cursor contactList = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
+//
+//        while(contactList.moveToNext()){
+//            String name = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+//            String email = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Email.DISPLAY_NAME));
+//            //Image image = contactList.getString(contactList.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO));
+//            Image image = null;
+//            Users mUsers = new Users(name,email, image);
+//            userList.add(mUsers);
+//            mUserListAdapter.notifyDataSetChanged();
+//        }
+//    }
 
     private void getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

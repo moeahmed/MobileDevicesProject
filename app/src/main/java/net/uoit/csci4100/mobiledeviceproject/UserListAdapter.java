@@ -10,48 +10,59 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserListViewHolder> {
-    ArrayList<Users> usersList;
+public class UserListAdapter extends RecyclerView.ViewHolder{
+    TextView userName;
+    TextView userEmail;
+    ImageView userProfileImage;
 
-    public UserListAdapter(ArrayList<Users> usersList){
-        this.usersList = usersList;
+
+    public UserListAdapter(@NonNull View itemView) {
+        super(itemView);
+
+        userName = itemView.findViewById(R.id.profileUser);
+        userEmail = itemView.findViewById(R.id.profileEmail);
+        userProfileImage = itemView.findViewById(R.id.profileImage);
     }
 
-    @NonNull
-    @Override
-    public UserListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_users, null,false);
-        RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutView.setLayoutParams(layoutParams);
+//    public UserListAdapter(ArrayList<Users> usersList){
+//        this.usersList = usersList;
+//    }
 
-        UserListViewHolder userListViewHolder = new UserListViewHolder(layoutView);
-        return userListViewHolder;
-    }
+//    @NonNull
+//    @Override
+//    public UserListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+//        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_users, null,false);
+//        RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        layoutView.setLayoutParams(layoutParams);
+//
+//        UserListViewHolder userListViewHolder = new UserListViewHolder(layoutView);
+//        return userListViewHolder;
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(@NonNull UserListViewHolder userListViewHolder, int i) {
+//        userListViewHolder.mName.setText(usersList.get(i).getName());
+//        userListViewHolder.mEmail.setText(usersList.get(i).getEmail());
+//        //userListViewHolder.mImage.setImageDrawable(usersList.get(i).getUserImage());
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return usersList.size();
+//    }
 
-    @Override
-    public void onBindViewHolder(@NonNull UserListViewHolder userListViewHolder, int i) {
-        userListViewHolder.mName.setText(usersList.get(i).getName());
-        userListViewHolder.mEmail.setText(usersList.get(i).getEmail());
-        //userListViewHolder.mImage.setImageDrawable(usersList.get(i).getUserImage());
-    }
-
-    @Override
-    public int getItemCount() {
-        return usersList.size();
-    }
-
-    public class UserListViewHolder extends RecyclerView.ViewHolder{
-        public TextView mName;
-        public TextView mEmail;
-        public ImageView mImage;
-        public UserListViewHolder(View view){
-            super(view);
-            mName = view.findViewById(R.id.name);
-            mEmail = view.findViewById(R.id.email);
-            mImage = view.findViewById(R.id.pictures);
-
-
-        }
-
-    }
+//    public class UserListViewHolder extends RecyclerView.ViewHolder{
+//        public TextView mName;
+//        public TextView mEmail;
+//        public ImageView mImage;
+//        public UserListViewHolder(View view){
+//            super(view);
+//            mName = view.findViewById(R.id.name);
+//            mEmail = view.findViewById(R.id.email);
+//            mImage = view.findViewById(R.id.pictures);
+//
+//
+//        }
+//
+//    }
 }

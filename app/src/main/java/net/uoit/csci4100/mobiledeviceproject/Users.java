@@ -5,20 +5,24 @@ import android.media.Image;
 public class Users {
     private String name;
     private String email;
-    private Image userImage;
+    private String image;
 
-    Users(String name, String email, Image image) {
+    Users(){
+
+    }
+
+    Users(String name, String email, String image) {
         this.name = name;
         this.email = email;
-        this.userImage = image;
+        this.image = image;
     }
 
     public String getName() {
         return name;
     }
 
-    public Image getUserImage() {
-        return userImage;
+    public String getImage() {
+        return image;
     }
 
     public String getEmail() {
@@ -33,7 +37,7 @@ public class Users {
         this.email = email;
     }
 
-    public void setUserImage(Image userImage) {
-        this.userImage = userImage;
+    public void setImage(String userImage) {
+        this.image = userImage;
     }
 }
