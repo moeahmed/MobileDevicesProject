@@ -26,7 +26,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ProfileActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".FindUserActivity" android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

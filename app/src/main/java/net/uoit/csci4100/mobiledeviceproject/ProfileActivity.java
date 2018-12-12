@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
     private EditText email;
     private EditText password;
     private ImageView profilePic;
+    private android.support.v7.widget.Toolbar toolbar;
     String currentUserID;
 
     private FirebaseAuth mAuth;
@@ -59,6 +61,11 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
         email = (EditText) findViewById(R.id.txtProfileEmail);
         password = (EditText) findViewById(R.id.txtProfilePassword);
         profilePic = (ImageView) findViewById(R.id.imageView3);
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.userProfile_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference();
