@@ -40,7 +40,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         InitializeUser();
-        Picasso.get().load(messageReceiverImage).placeholder(R.drawable.avatar1);
+        Picasso.get().load(messageReceiverImage).placeholder(R.drawable.avatar1).into(mUserImage);
         mUserName.setText(messageReceiverName);
         mUserEmail.setText(messageReceiverEmail);
     }
