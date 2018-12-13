@@ -1,0 +1,18 @@
+Completed so far:
+* log in
+* create account
+* password recovery
+* main menu layout
+* Contacts
+* Chat Server Connection
+* Profile
+* Users
+
+TO Do:
+* settings
+* media upload
+* chat messages 
+* Clean up code / refactor
+* make power point 
+* update Readme
+
