@@ -96,11 +96,14 @@ public class ChatActivity extends AppCompatActivity {
                 Messages messages = dataSnapshot.getValue(Messages.class);
                 mMessageList.add(messages);
                 mMessageAdapter.notifyDataSetChanged();
+
+                // Fix scroll issue on new message
+                mMessages.scrollToPosition(mMessages.getAdapter().getItemCount());
+
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override

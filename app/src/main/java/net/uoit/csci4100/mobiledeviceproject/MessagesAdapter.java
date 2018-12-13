@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +44,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
                 messageViewHolder.senderMessageText.setText(messages.getMessage());
             } else {
                 messageViewHolder.senderMessageText.setVisibility(View.INVISIBLE);
-                messageViewHolder.senderMessageText.setVisibility(View.VISIBLE);
+                messageViewHolder.receiverMessageText.setVisibility(View.VISIBLE);
                 messageViewHolder.receiverMessageText.setBackgroundResource(R.drawable.their_message);
                 messageViewHolder.receiverMessageText.setText(messages.getMessage());
 
