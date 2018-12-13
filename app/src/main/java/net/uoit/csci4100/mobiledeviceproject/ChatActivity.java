@@ -1,7 +1,9 @@
 package net.uoit.csci4100.mobiledeviceproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,6 +83,14 @@ public class ChatActivity extends AppCompatActivity {
         mUserEmail = (TextView) findViewById(R.id.chatbarEmail);
 
         //mSendButton = (ImageButton) findViewById(R.id.sendButton);
+//        FloatingActionButton fab = (FloatingActionButton)mSendButton.findViewById(R.id.button);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), FindUserActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         mMessageText = (EditText) findViewById(R.id.inputMessageTxt);
     }
 
