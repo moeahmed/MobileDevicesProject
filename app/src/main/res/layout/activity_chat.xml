@@ -63,19 +63,18 @@
 
         <EditText
             android:id="@+id/inputMessageTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/messagehint" />
 
-        <ImageButton
-            android:id="@+id/sendButton"
-            android:background="@color/colorAccent"
-            android:layout_width="50dp"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_send" />
+            android:src="@android:drawable/ic_input_add"
+            android:layout_gravity="bottom|end"/>
     </LinearLayout>
 
 </RelativeLayout>

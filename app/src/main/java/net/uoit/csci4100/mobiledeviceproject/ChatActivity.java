@@ -80,7 +80,7 @@ public class ChatActivity extends AppCompatActivity {
         mUserName = (TextView) findViewById(R.id.chatbarName);
         mUserEmail = (TextView) findViewById(R.id.chatbarEmail);
 
-        mSendButton = (ImageButton) findViewById(R.id.sendButton);
+        //mSendButton = (ImageButton) findViewById(R.id.sendButton);
         mMessageText = (EditText) findViewById(R.id.inputMessageTxt);
     }
 
