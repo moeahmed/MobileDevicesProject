@@ -58,7 +58,7 @@ public class ChatsFragment extends Fragment {
         return mChatsView;
     }
 
-
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -102,4 +102,5 @@ public class ChatsFragment extends Fragment {
         mAllChatList.setAdapter(fbAdapter);
         fbAdapter.startListening();
     }
+    */
 }
