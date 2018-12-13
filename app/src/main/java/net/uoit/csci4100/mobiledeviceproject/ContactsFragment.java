@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static java.security.AccessController.getContext;
+
 
 public class ContactsFragment extends Fragment {
 

@@ -1,6 +1,7 @@
 package net.uoit.csci4100.mobiledeviceproject;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,9 +31,9 @@ public class ChatsFragment extends Fragment {
 
     private View mChatsView;
     private RecyclerView mAllChatList;
-    private DatabaseReference mChatsRef;
+    private DatabaseReference mRef;
     private DatabaseReference mUsersRef;
-    private FirebaseRecyclerOptions<Users> mOptions;
+    //private FirebaseRecyclerOptions<Users> mOptions;
     private FirebaseAuth mAuth;
     private String mCurrentUserID;
 
@@ -48,9 +49,9 @@ public class ChatsFragment extends Fragment {
         mChatsView =  inflater.inflate(R.layout.fragment_chats, container, false);
 
         mAuth = FirebaseAuth.getInstance();
-        mCurrentUserID = mAuth.getCurrentUser().getUid();
-        mChatsRef = FirebaseDatabase.getInstance().getReference().child("Chats").child(mCurrentUserID);
-        mUsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUserID);
+        mCurrentUserID = mAuth.getUid();
+        mRef = FirebaseDatabase.getInstance().getReference().child("Chats").child(mCurrentUserID);
+        mUsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mAllChatList = (RecyclerView) mChatsView.findViewById(R.id.allChatsList);
         mAllChatList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,49 +59,56 @@ public class ChatsFragment extends Fragment {
         return mChatsView;
     }
 
-/*
     @Override
     public void onStart() {
         super.onStart();
 
-        mOptions = new FirebaseRecyclerOptions.Builder<Users>().setQuery(mChatsRef, Users.class).build();
+        FirebaseRecyclerOptions<Users> options = new FirebaseRecyclerOptions.Builder<Users>()
+                .setQuery(mRef, Users.class)
+                .build();
 
-        FirebaseRecyclerAdapter<Users, ChatsViewAdapter> fbAdapter = new FirebaseRecyclerAdapter<Users, ChatsViewAdapter>(mOptions) {
-                @Override
-                protected void onBindViewHolder(@NonNull final ChatsViewAdapter holder, int position, @NonNull Users model) {
-                    final String userIDs = getRef(position).getKey();
+        FirebaseRecyclerAdapter<Users, UserListAdapter> adapter = new FirebaseRecyclerAdapter<Users, UserListAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull final UserListAdapter holder, int position, @NonNull final Users model) {
 
-                    mUsersRef.child(userIDs).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String userID = getRef(position).getKey();
+                mUsersRef.child(userID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                        if (dataSnapshot.exists()) {
                             if(dataSnapshot.hasChild("image")){
                                 String profileImage = dataSnapshot.child("image").getValue().toString();
                                 Picasso.get().load(profileImage).placeholder(R.drawable.avatar1).into(holder.mUserImage);
                             }
-                            String profileName = dataSnapshot.child("name").getValue().toString();
-                            String profileEmail = dataSnapshot.child("email").getValue().toString();
+                            final String profileName = dataSnapshot.child("name").getValue().toString();
 
                             holder.mUserName.setText(profileName);
-                            holder.mUserEmail.setText(profileEmail);
-                            //Picasso.get().load().placeholder(R.drawable.avatar1).into(holder.userProfileImage);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            holder.mUserEmail.setText("Last Message: " + "\n" + "Date: " + "\n" + "Time: ");
 
                         }
-                    });
-                }
+                    }
 
-                @NonNull
-                @Override
-                public ChatsViewAdapter onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                    View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.userdisplay_layout, viewGroup, false);
-                    return new ChatsViewAdapter(view);
-                }
-            };
-        mAllChatList.setAdapter(fbAdapter);
-        fbAdapter.startListening();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public UserListAdapter onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.userdisplay_layout, viewGroup,false );
+                UserListAdapter userListAdapter = new UserListAdapter(view);
+
+                return userListAdapter;
+            }
+        };
+
+
+        mAllChatList.setAdapter(adapter);
+        adapter.startListening();
     }
-    */
 }
