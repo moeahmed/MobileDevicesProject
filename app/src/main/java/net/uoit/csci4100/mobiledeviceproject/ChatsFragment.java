@@ -4,9 +4,11 @@ package net.uoit.csci4100.mobiledeviceproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,12 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +40,7 @@ public class ChatsFragment extends Fragment {
     //private FirebaseRecyclerOptions<Users> mOptions;
     private FirebaseAuth mAuth;
     private String mCurrentUserID;
+    private String profileImage = "";
 
 
     public ChatsFragment() {
@@ -79,13 +84,61 @@ public class ChatsFragment extends Fragment {
 
                         if (dataSnapshot.exists()) {
                             if(dataSnapshot.hasChild("image")){
-                                String profileImage = dataSnapshot.child("image").getValue().toString();
+                                profileImage = dataSnapshot.child("image").getValue().toString();
                                 Picasso.get().load(profileImage).placeholder(R.drawable.avatar1).into(holder.mUserImage);
                             }
                             final String profileName = dataSnapshot.child("name").getValue().toString();
+                            final String profileEmail = dataSnapshot.child("email").getValue().toString();
 
                             holder.mUserName.setText(profileName);
-                            holder.mUserEmail.setText("Last Message: " + "\n" + "Date: " + "\n" + "Time: ");
+                            holder.mUserEmail.setText("Last Message: ");
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                            Query lastQuery = databaseReference.child("Chats").child(mCurrentUserID).child(userID).orderByKey().limitToLast(1);
+
+                            lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    String tmp = "";
+                                    Boolean fromOrThem = false;
+
+                                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                                        Log.d("User key", child.getKey());
+                                        Log.d("User val", child.child("message").getValue().toString());
+                                        tmp = child.child("message").getValue().toString();
+
+                                        if(child.child("from").getValue().toString().equals(mCurrentUserID)){
+                                            fromOrThem = true;
+                                        }
+                                    }
+
+                                    if(fromOrThem){
+                                        holder.mUserEmail.setText("You: " + tmp);
+                                    }else{
+                                        holder.mUserEmail.setText(profileName + ": " + tmp);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    databaseError.getMessage();
+                                }
+                            });
+
+                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                    chatIntent.putExtra("contactID", userID);
+                                    chatIntent.putExtra("contactName", profileName);
+                                    chatIntent.putExtra("contactEmail", profileEmail);
+                                    chatIntent.putExtra("contactImage", profileImage);
+                                    startActivity(chatIntent);
+                                }
+                            });
+
 
                         }
                     }

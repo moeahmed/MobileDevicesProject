@@ -74,7 +74,14 @@ public class ChatActivity extends AppCompatActivity {
 
 
         InitializeChat();
-        Picasso.get().load(mReceiverImage).placeholder(R.drawable.avatar1).into(mUserImage);
+
+        if(mReceiverImage.isEmpty()){
+            Picasso.get().load(R.drawable.avatar1).placeholder(R.drawable.avatar1).into(mUserImage);
+        }else{
+            Picasso.get().load(mReceiverImage).placeholder(R.drawable.avatar1).into(mUserImage);
+        }
+
+        //Picasso.get().load(mReceiverImage).placeholder(R.drawable.avatar1).into(mUserImage);
         mUserName.setText(mReceiverName);
         mUserEmail.setText(mReceiverEmail);
 
