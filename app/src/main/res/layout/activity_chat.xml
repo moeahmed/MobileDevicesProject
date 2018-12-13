@@ -35,6 +35,7 @@
 
         <TextView
             android:id="@+id/chatbarEmail"
+            android:layout_toEndOf="@+id/chatbarProfileImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -51,7 +52,10 @@
         android:id="@+id/chatMessageList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false">
+        android:layout_below="@id/chatbar"
+        android:clipToPadding="false"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -70,11 +74,11 @@
             android:hint="@string/messagehint" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/button"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_send"
-            android:layout_gravity="bottom|end"/>
+            android:layout_gravity="bottom|end"
+            android:src="@android:drawable/ic_menu_send" />
     </LinearLayout>
 
 </RelativeLayout>

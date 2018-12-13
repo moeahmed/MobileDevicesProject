@@ -1,12 +1,12 @@
 package net.uoit.csci4100.mobiledeviceproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -24,11 +24,16 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
@@ -44,19 +49,23 @@ public class ChatActivity extends AppCompatActivity {
     private EditText mMessageText;
     private FirebaseAuth mAuth;
     private DatabaseReference mDbRef;
+    private final List<Messages> mMessageList = new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView mMessages;
+    private MessagesAdapter mMessageAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        
+
         // Get Sender Info
         mAuth = FirebaseAuth.getInstance();
         mSenderID = mAuth.getCurrentUser().getUid();
 
         mDbRef = FirebaseDatabase.getInstance().getReference();
-        
+
         // Get message info
         mReceiverID = getIntent().getExtras().get("contactID").toString();
         mReceiverName = getIntent().getExtras().get("contactName").toString();
@@ -77,21 +86,53 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mDbRef.child("Chats").child(mSenderID).child(mReceiverID).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Messages messages = dataSnapshot.getValue(Messages.class);
+                mMessageList.add(messages);
+                mMessageAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void InitializeChat() {
         mUserImage = (ImageView) findViewById(R.id.chatbarProfileImage);
         mUserName = (TextView) findViewById(R.id.chatbarName);
         mUserEmail = (TextView) findViewById(R.id.chatbarEmail);
 
-        //mSendButton = (ImageButton) findViewById(R.id.sendButton);
-//        FloatingActionButton fab = (FloatingActionButton)mSendButton.findViewById(R.id.button);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), FindUserActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        mSendButton = (ImageButton) findViewById(R.id.sendButton);
         mMessageText = (EditText) findViewById(R.id.inputMessageTxt);
+
+        mMessageAdapter = new MessagesAdapter(mMessageList);
+        mMessages = (RecyclerView) findViewById(R.id.chatMessageList);
+        linearLayoutManager = new LinearLayoutManager(this);
+        mMessages.setLayoutManager(linearLayoutManager);
+        mMessages.setAdapter(mMessageAdapter);
     }
 
     private void sendMessage() {
@@ -109,7 +150,7 @@ public class ChatActivity extends AppCompatActivity {
             messageMetaData.put("to", mReceiverID);
             messageMetaData.put("from", mSenderID);
             messageMetaData.put("message", messageContent);
-            messageMetaData.put("type", "text");
+            messageMetaData.put("datatype", "text");
 
             Map messageBody = new HashMap();
             messageBody.put(mSenderRef + "/" + pushID, messageMetaData);

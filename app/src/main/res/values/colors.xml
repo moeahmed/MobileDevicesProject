@@ -6,4 +6,5 @@
     <color name="tabText">#D6D6D6</color>
     <color name="tabIndicator">#D6D6D6</color>
     <color name="titleText">#FFFFFF</color>
+    <color name="messageBG">#A9A9A9</color>
 </resources>
