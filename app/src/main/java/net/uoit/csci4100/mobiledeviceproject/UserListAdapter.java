@@ -11,17 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class UserListAdapter extends RecyclerView.ViewHolder{
-    TextView userName;
-    TextView userEmail;
-    ImageView userProfileImage;
+    ImageView mUserImage;
+    TextView mUserName;
+    TextView mUserEmail;
 
 
     public UserListAdapter(@NonNull View itemView) {
         super(itemView);
 
-        userName = itemView.findViewById(R.id.profileUser);
-        userEmail = itemView.findViewById(R.id.profileEmail);
-        userProfileImage = itemView.findViewById(R.id.profileImage);
+        mUserName = itemView.findViewById(R.id.profileUser);
+        mUserEmail = itemView.findViewById(R.id.profileEmail);
+        mUserImage = itemView.findViewById(R.id.profileImage);
     }
 
 //    public UserListAdapter(ArrayList<Users> usersList){

@@ -64,9 +64,9 @@ public class FindUserActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull UserListAdapter holder, final int position, @NonNull Users model) {
 
-                holder.userName.setText(model.getName());
-                holder.userEmail.setText(model.getEmail());
-                Picasso.get().load(model.getImage()).placeholder(R.drawable.avatar1).into(holder.userProfileImage);
+                holder.mUserName.setText(model.getName());
+                holder.mUserEmail.setText(model.getEmail());
+                Picasso.get().load(model.getImage()).placeholder(R.drawable.avatar1).into(holder.mUserImage);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

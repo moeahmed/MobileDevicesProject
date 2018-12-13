@@ -25,5 +25,6 @@
     <string name="signout">Sign out</string>
     <string name="find_user">Find User</string>
     <string name="userprofile">User Profile</string>
+    <string name="messagehint">Enter message here...</string>
 
 </resources>

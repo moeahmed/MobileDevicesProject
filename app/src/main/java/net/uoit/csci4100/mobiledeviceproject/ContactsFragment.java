@@ -1,6 +1,7 @@
 package net.uoit.csci4100.mobiledeviceproject;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -32,6 +33,8 @@ public class ContactsFragment extends Fragment {
     private DatabaseReference mUsersRef;
     private FirebaseAuth mAuth;
     private String currentUserID;
+    private String profileImage;
+
     public ContactsFragment() {
         // Required empty public constructor
     }
@@ -64,20 +67,34 @@ public class ContactsFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final UserListAdapter holder, int position, @NonNull final Users model) {
 
-                String userID = getRef(position).getKey();
+                final String userID = getRef(position).getKey();
                 mUsersRef.child(userID).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild("image")){
-                            String profileImage = dataSnapshot.child("image").getValue().toString();
-                            Picasso.get().load(profileImage).placeholder(R.drawable.avatar1).into(holder.userProfileImage);
-                        }
-                        String profileName = dataSnapshot.child("name").getValue().toString();
-                        String profileEmail = dataSnapshot.child("email").getValue().toString();
+                        if (dataSnapshot.exists()) {
+                            if(dataSnapshot.hasChild("image")){
+                                profileImage = dataSnapshot.child("image").getValue().toString();
+                                Picasso.get().load(profileImage).placeholder(R.drawable.avatar1).into(holder.mUserImage);
+                            }
+                            final String profileName = dataSnapshot.child("name").getValue().toString();
+                            final String profileEmail = dataSnapshot.child("email").getValue().toString();
 
-                        holder.userName.setText(profileName);
-                        holder.userEmail.setText(profileEmail);
-                        //Picasso.get().load().placeholder(R.drawable.avatar1).into(holder.userProfileImage);
+                            holder.mUserName.setText(profileName);
+                            holder.mUserEmail.setText(profileEmail);
+                            //Picasso.get().load().placeholder(R.drawable.avatar1).into(holder.userProfileImage);
+
+                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                    chatIntent.putExtra("contactID", userID);
+                                    chatIntent.putExtra("contactName", profileName);
+                                    chatIntent.putExtra("contactEmail", profileEmail);
+                                    chatIntent.putExtra("contactImage", profileImage);
+                                    startActivity(chatIntent);
+                                }
+                            });
+                        }
                     }
 
                     @Override
