@@ -1,4 +1,5 @@
 # CSCI4100 Mobile Devices Group Project - Chat App
+Link Chat aims to provide UOIT/OnTechU students a fast and easy way method for cross-campus communication and group projects. As some students can be uncomfortable with sharing their personal social media or contact information, Link Chat aims to be the new messaging protocol across campuses. All registered UOIT students will appear in the Find User activity to provide quick lookup. Users added from the Find User activity will appear in your contacts activity. 
 
 ### Group Members
 Ibrahim Mushtaq,
@@ -11,8 +12,10 @@ Username: mobiledeviceproject1@gmail.com <br>
 Password: gitgood123
 
 ### Test User: <br>
-Username: moe@gmail.com
+Username: username@gmail.com
+Password: password
 
+Username: moe@gmail.com
 Password: moemoe
 
 This project was done in pair programming. 
