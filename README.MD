@@ -12,10 +12,10 @@ Username: mobiledeviceproject1@gmail.com <br>
 Password: gitgood123
 
 ### Test User: <br>
-Username: username@gmail.com
-Password: password
+Username: username@gmail.com <br>
+Password: password 
 
-Username: moe@gmail.com
+Username: moe@gmail.com <br>
 Password: moemoe
 
 This project was done in pair programming. 
