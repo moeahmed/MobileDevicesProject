@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mUserList;
     private RecyclerView.Adapter mUserListAdapter;
     private RecyclerView.LayoutManager mUserListLayout;
-    private ViewPager mViewPager;
+    private static ViewPager mViewPager;
     private DatabaseReference mRef;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-
         //Initialize Recycler View
 //        mUserList = (RecyclerView)findViewById(R.id.userList);
 //        mUserList.setNestedScrollingEnabled(false);
@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
 //
 //        getContactList();
 
+    }
+
+    public static void openContactsFragment() {
+        mViewPager.setCurrentItem(1);
     }
 
     @Override

@@ -1,63 +1,63 @@
 {
-  "project_info": {
-    "project_number": "303100537899",
-    "firebase_url": "https://mobiledeviceproject-b66dd.firebaseio.com",
-    "project_id": "mobiledeviceproject-b66dd",
-    "storage_bucket": "mobiledeviceproject-b66dd.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:303100537899:android:c9cf4960f08b9ad0",
-        "android_client_info": {
-          "package_name": "net.uoit.csci4100.mobiledeviceproject"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "303100537899-fgg2e0kbnvca4rkqq10nh7c7e1j2c3ib.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "net.uoit.csci4100.mobiledeviceproject",
-            "certificate_hash": "e70ef39010ed3f37b81bffb732bfbc8ecafa183a"
+    "project_info": {
+      "project_number": "303100537899",
+      "firebase_url": "https://mobiledeviceproject-b66dd.firebaseio.com",
+      "project_id": "mobiledeviceproject-b66dd",
+      "storage_bucket": "mobiledeviceproject-b66dd.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:303100537899:android:c9cf4960f08b9ad0",
+          "android_client_info": {
+            "package_name": "net.uoit.csci4100.mobiledeviceproject"
           }
         },
-        {
-          "client_id": "303100537899-k3bbddhn368ia8he1eo8vqg16gc5cptv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "net.uoit.csci4100.mobiledeviceproject",
-            "certificate_hash": "31bd66aa1a4259958cb36c4b6072dcbc9e83e45a"
-          }
-        },
-        {
-          "client_id": "303100537899-1s0ns7b1kfav6no195vm1en6hplph4rd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCWxOnH9oV9yXS2Q0HqRZSWC9PeZsTla8o"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "303100537899-1s0ns7b1kfav6no195vm1en6hplph4rd.apps.googleusercontent.com",
-              "client_type": 3
+        "oauth_client": [
+          {
+            "client_id": "303100537899-fgg2e0kbnvca4rkqq10nh7c7e1j2c3ib.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "net.uoit.csci4100.mobiledeviceproject",
+              "certificate_hash": "e70ef39010ed3f37b81bffb732bfbc8ecafa183a"
             }
-          ]
-        },
-        "ads_service": {
-          "status": 2
+          },
+          {
+            "client_id": "303100537899-k3bbddhn368ia8he1eo8vqg16gc5cptv.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "net.uoit.csci4100.mobiledeviceproject",
+              "certificate_hash": "31bd66aa1a4259958cb36c4b6072dcbc9e83e45a"
+            }
+          },
+          {
+            "client_id": "303100537899-1s0ns7b1kfav6no195vm1en6hplph4rd.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyCWxOnH9oV9yXS2Q0HqRZSWC9PeZsTla8o"
+          }
+        ],
+        "services": {
+          "analytics_service": {
+            "status": 1
+          },
+          "appinvite_service": {
+            "status": 2,
+            "other_platform_oauth_client": [
+              {
+                "client_id": "303100537899-1s0ns7b1kfav6no195vm1en6hplph4rd.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          },
+          "ads_service": {
+            "status": 2
+          }
         }
       }
-    }
-  ],
-  "configuration_version": "1"
-}
+    ],
+    "configuration_version": "1"
+  }
