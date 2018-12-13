@@ -26,3 +26,17 @@ This project was done in pair programming.
 6. Follow the on screeen prompt.
 7. To add contacts click the plus button in the contacts tab.
 8. To go to chat click the chat button in the chat tab. 
+
+### Demo
+#### Login Activity
+![](gifs/login_activity.gif)
+
+#### Register Activity
+![](gifs/register_activity.gif)
+
+#### Add User to Contacts
+![](gifs/add_user.gif)
+
+#### Chat Demo
+![](gifs/chat_demo.gif)
+
