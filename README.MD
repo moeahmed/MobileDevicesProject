@@ -1,8 +1,8 @@
 # CSCI4100 Mobile Devices Group Project - Chat App
 
 ### Group Members
-Ibrahim Mushtaq
-Shubham Patel
+Ibrahim Mushtaq,
+Shubham Patel,
 Mohammed Ahmed
 
 ### Additional Information
