@@ -27,4 +27,6 @@
     <string name="userprofile">User Profile</string>
     <string name="messagehint">Enter message here...</string>
 
+    <string name="about">About</string>
+    <string name="info">Version 1.0.1</string>
 </resources>

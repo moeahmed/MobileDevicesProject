@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SettingsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/settingsbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+        app:elevation="0dp">
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/chatbarProfileImage"
+            android:text="@string/settings"
+            android:textColor="@color/titleText"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="50dp"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/locationService"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Location Service" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/notificationService"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Notification" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/mediaService"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Media" />
+
+        <TextView
+            android:id="@+id/About"
+            android:layout_width="365dp"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            android:textColor="@android:color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="365dp"
+            android:layout_height="wrap_content"
+            android:text="@string/info"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</RelativeLayout>
