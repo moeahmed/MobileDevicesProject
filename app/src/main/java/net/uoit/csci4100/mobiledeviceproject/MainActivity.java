@@ -114,13 +114,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Boolean exist = dataSnapshot.child("name:").exists();
-
-
-                Toast.makeText(MainActivity.this, exist.toString(), Toast.LENGTH_LONG).show();
-
                 if((dataSnapshot.child("name").exists())){
-                    Toast.makeText(MainActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
                 }else{
                    //Toast.makeText(MainActivity.this, "Please Enter Info", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);

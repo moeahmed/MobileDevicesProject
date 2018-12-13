@@ -76,7 +76,7 @@ public class ContactsFragment extends Fragment {
                         String profileEmail = dataSnapshot.child("email").getValue().toString();
 
                         holder.userName.setText(profileName);
-                        holder.userName.setText(profileEmail);
+                        holder.userEmail.setText(profileEmail);
                         //Picasso.get().load().placeholder(R.drawable.avatar1).into(holder.userProfileImage);
                     }
 
