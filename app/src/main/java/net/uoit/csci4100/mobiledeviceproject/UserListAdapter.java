@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * The UserListAdapter provides helps populate the UserList for contacts.
+ */
 public class UserListAdapter extends RecyclerView.ViewHolder{
     ImageView mUserImage;
     TextView mUserName;

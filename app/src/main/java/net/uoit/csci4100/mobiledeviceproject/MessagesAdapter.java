@@ -12,14 +12,27 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
+/**
+ * The Messages Adapter class extends RecyclerView and aims to populate the RecyclerView.
+ */
 public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     private List<Messages> messageList;
     private FirebaseAuth mAuth;
 
+    /**
+     * MessagesAdapter constructor
+     * @param messageList
+     */
     public MessagesAdapter(List<Messages> messageList) {
         this.messageList = messageList;
     }
 
+    /**
+     * The onCreateViewHolder method creates a new message view.
+     * @param viewGroup
+     * @param i
+     * @return
+     */
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -28,6 +41,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         return  new MessageViewHolder(view);
     }
 
+    /**
+     * The onBindViewHolder populates the MessageViewHolder contents with messages.
+     * @param messageViewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder messageViewHolder, int i) {
         String senderID = mAuth.getCurrentUser().getUid();
@@ -52,6 +70,10 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         }
     }
 
+    /**
+     * The getItemCount method returns the number of messages in a chat.
+     * @return messageList.size() - Message list size. (int)
+     */
     @Override
     public int getItemCount() {
         return messageList.size();

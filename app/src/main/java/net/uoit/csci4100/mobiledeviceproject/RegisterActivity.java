@@ -15,19 +15,34 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The RegisterActivity class contains code corresponding to the activity_register layout.
+ */
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
+    /**
+     * The onCreate method creates the register activity.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
     }
 
+    /**
+     * The handleAlreadyRegistered method closes the register activity.
+     * @param view
+     */
     public void handleAlreadyRegistered(View view) {
         finish();
     }
 
+    /**
+     * The handleRegister method registers a new user.
+     * @param view
+     */
     public void handleRegister(View view) {
         mAuth = FirebaseAuth.getInstance();
 

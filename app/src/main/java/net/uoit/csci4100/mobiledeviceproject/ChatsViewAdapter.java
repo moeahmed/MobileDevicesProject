@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * A simple Adapter for populating the chats fragment.
+ */
 public class ChatsViewAdapter extends RecyclerView.ViewHolder{
 
     ImageView mUserImage;

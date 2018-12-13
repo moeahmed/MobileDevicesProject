@@ -5,11 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * The MessageView holder class extends the RecyclerView holder to populate the messageList.
+ */
 public class MessageViewHolder extends RecyclerView.ViewHolder {
 
     public TextView senderMessageText;
     public TextView receiverMessageText;
 
+    /**
+     * The MessageViewHolder method gets sender/receiver message text for the MessageViewHolder.
+     * @param itemView
+     */
     public MessageViewHolder(@NonNull View itemView) {
         super(itemView);
 

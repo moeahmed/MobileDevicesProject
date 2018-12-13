@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Class corresponding with activity_login
+ */
 public class LoginActivity extends AppCompatActivity  {
 
     private FirebaseAuth mAuth;
@@ -25,6 +28,10 @@ public class LoginActivity extends AppCompatActivity  {
 
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    /**
+     * The onCreate method creates the login activity.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +46,18 @@ public class LoginActivity extends AppCompatActivity  {
                 if (firebaseAuth.getCurrentUser() != null){
                     Intent launchChat = new Intent(LoginActivity.this, MainActivity.class );
                     startActivityForResult(launchChat,CHAT);
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         };
     }
 
+    /**
+     * The handleLogin method aims to authenticate users and sign them into the application using
+     * Firebase authentication.
+     * @param view
+     */
     public void handleLogin(View view){
         EditText txtUser = findViewById(R.id.txtUsername);
         EditText txtPass = findViewById(R.id.txtPassword);
@@ -73,11 +85,19 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
+    /**
+     * The handleCreateAccount method launches the register activity.
+     * @param view
+     */
     public void handleCreateAccount(View view) {
         Intent launchRegister = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(launchRegister);
     }
 
+    /**
+     * The handleResetAccount method launches the account reset activity.
+     * @param view
+     */
     public void handleResetAccount(View view) {
         Intent launchReset = new Intent(LoginActivity.this, ResetActivity.class);
         startActivity(launchReset);

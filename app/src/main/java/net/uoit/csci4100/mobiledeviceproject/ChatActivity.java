@@ -36,6 +36,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The ChatActivity class contains code for the activity_chat layout.
+ */
 public class ChatActivity extends AppCompatActivity {
     private String mSenderID;
     private String mReceiverID;
@@ -55,6 +58,11 @@ public class ChatActivity extends AppCompatActivity {
     private MessagesAdapter mMessageAdapter;
 
 
+    /**
+     * The onCreate method which initiates the activity and sets the member variables. This will
+     * initialize the chat activity and contains the mSendButton OnClickListener.
+     * @param savedInstanceState The instance state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +101,10 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The onStart method queries chat messages from the Firebase DB and displays them using the
+     * message adapter.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -130,6 +142,10 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The InitializeChat method gets new messages from the message adapter and displays them on the
+     * activity elements.
+     */
     private void InitializeChat() {
         mUserImage = (ImageView) findViewById(R.id.chatbarProfileImage);
         mUserName = (TextView) findViewById(R.id.chatbarName);
@@ -145,6 +161,9 @@ public class ChatActivity extends AppCompatActivity {
         mMessages.setAdapter(mMessageAdapter);
     }
 
+    /**
+     * The sendMessage method takes the inputted message and sends it to the recipient (via Firebase).
+     */
     private void sendMessage() {
         String messageContent = mMessageText.getText().toString();
 

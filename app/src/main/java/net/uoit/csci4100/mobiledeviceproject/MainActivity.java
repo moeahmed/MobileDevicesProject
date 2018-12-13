@@ -94,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * The openContactsFragment opens the contacts fragment when the new chat button
+     * (located in the chat fragment) is clicked.
+     */
     public static void openContactsFragment() {
         mViewPager.setCurrentItem(1);
     }
@@ -111,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The verifyUserExistence method ensures that the user exists in the database before trying to
+     * display their profile information.
+     */
     private void verifyUsersExistence() {
         final String currentUserID = mAuth.getCurrentUser().getUid();
 
@@ -135,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * The onCreateOptionsMenu method inflates the options menu layout.
+     * @param menu - Options menu. (Menu)
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -142,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * The onOptionsItemSelected method starts the activity corresponding to the menu item selected.
+     * @param item - Item selected. (MenuItem)
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -184,7 +202,9 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-
+    /**
+     * The getPermissions method asks the user for permission to read contacts from device.
+     */
     private void getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS}, 0);

@@ -30,7 +30,7 @@ import com.squareup.picasso.Picasso;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * ChatFragment for the main activity.
  */
 public class ChatsFragment extends Fragment {
 
@@ -43,12 +43,21 @@ public class ChatsFragment extends Fragment {
     private String mCurrentUserID;
     private String profileImage = "";
 
-
+    /**
+     * The chatMessage empty constructor
+     */
     public ChatsFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * The onCreateView creates the chat fragment view, initializes the chat list, and
+     * holds the FAB onClickListener.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

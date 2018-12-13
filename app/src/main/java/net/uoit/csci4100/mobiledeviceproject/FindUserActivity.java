@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+/**
+ * A class containing code for the FindUserActivity.
+ */
 public class FindUserActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
@@ -31,7 +34,10 @@ public class FindUserActivity extends AppCompatActivity {
 
     private String currentUserID;
 
-
+    /**
+     * The onCreate method creates the FindUserActivity and toolbar.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,9 @@ public class FindUserActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * The onStart method contains the onBindViewHolder responsible for adding contacts when clicked.
+     */
     @Override
     protected void onStart(){
         super.onStart();
@@ -83,6 +92,12 @@ public class FindUserActivity extends AppCompatActivity {
 
             }
 
+            /**
+             * The onCreateViewHolder method aids in populating the Find Users' RecyclerView.
+             * @param viewGroup
+             * @param i
+             * @return
+             */
             @NonNull
             @Override
             public UserListAdapter onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -100,11 +115,15 @@ public class FindUserActivity extends AppCompatActivity {
 
     }
 
-    private void accceptChat(final String otherUserID){
+    /**
+     * The acceptChat method adds new users from the Find User RecyclerView.
+     * @param otherUserID
+     */
+    private void accceptChat(final String otherUserID) {
         
-        if(currentUserID == otherUserID){
-            Toast.makeText(this, "You Can Not Add YOUR SELF!", Toast.LENGTH_SHORT).show();
-        }else{
+        if (currentUserID == otherUserID) {
+            Toast.makeText(this, "You can not add yourself!", Toast.LENGTH_SHORT).show();
+        } else {
             mContactRef.child(otherUserID).child(currentUserID).child("Contacts").setValue("Saved")
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

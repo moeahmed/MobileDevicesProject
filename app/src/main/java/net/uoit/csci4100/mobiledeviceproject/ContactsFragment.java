@@ -39,11 +39,21 @@ public class ContactsFragment extends Fragment {
     private String currentUserID;
     private String profileImage;
 
+    /**
+     * An empty ContactsFragment constructor.
+     */
     public ContactsFragment() {
         // Required empty public constructor
     }
 
 
+    /**
+     * The contactsFragment onCreateView method creates and returns the contact fragment view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +81,10 @@ public class ContactsFragment extends Fragment {
     }
 
 
-
+    /**
+     * The onStart method gets all contacts from Firebase and lists them in the RecyclerView.
+     * Clicking on a contact will start a chat.
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -121,6 +134,12 @@ public class ContactsFragment extends Fragment {
                 });
             }
 
+            /**
+             * The onCreateViewHolder method helps populate the RecyclerView using the UserListAdapter.
+             * @param viewGroup
+             * @param i
+             * @return
+             */
             @NonNull
             @Override
             public UserListAdapter onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

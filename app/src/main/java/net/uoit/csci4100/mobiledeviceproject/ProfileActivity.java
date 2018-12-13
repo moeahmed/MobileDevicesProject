@@ -34,6 +34,9 @@ import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 
+/**
+ * The profileActivity class contains code for the activity_profile layout.
+ */
 public class ProfileActivity extends AppCompatActivity implements ImageDataListener {
 
     private Button updateUserInfo;
@@ -51,6 +54,10 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
     private static final int GALLARY = 1;
 
 
+    /**
+     * The onCreate method creates the activity_profile.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +87,10 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
 
     }
 
+    /**
+     * The onClickUpdate method updates the user's profile.
+     * @param view
+     */
     public void onClickUpdate(View view){
         final String mName = this.name.getText().toString();
         //String mPasswword = this.password.getText().toString();
@@ -141,6 +152,9 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
 
     }
 
+    /**
+     * The retreiveInfo method gets a user's info from the DB for populating their profile.
+     */
     private void retrieveInfo() {
         mRef.child("Users").child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -184,6 +198,12 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
         });
     }
 
+    /**
+     * The onActivityResult method uploads and saves the users new profile image to the DB.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -242,6 +262,10 @@ public class ProfileActivity extends AppCompatActivity implements ImageDataListe
         retrieveInfo();
     }
 
+    /**
+     * The onClickPicture method opens the gallery to allow for users to change their profile image.
+     * @param view
+     */
     public void onClickPicture(View view){
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
